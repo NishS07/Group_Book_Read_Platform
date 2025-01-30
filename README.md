@@ -115,15 +115,15 @@ Group_Book_Reading_Platform/
 │   │   │   ├── DiscussionPage.jsx - Forum page for book discussions
 │   │   │   ├── GroupPage.jsx - Group details and member interactions
 │   │   │   ├── MemberGroupPage.jsx - Member-specific group interactions
-│   ├── tests/          # Frontend tests
+│   |   ├── tests/          # Frontend tests
 │   ├── public/         # Static assets
 │   ├── package.json    # Frontend dependencies
-│   └── jest.config.js  # Jest configuration for testing
+│   
 ```
 
 ## Models
 The backend includes the following models:
-- **User**: Stores user information (username, email, password).
+- **User**: Stores user information (username, email, password, role).
 - **Book**: Stores information about books, including title, author, genre and description.
 - **Group**: Stores reading group details (name, members, reading goals).
 - **Chapter**: Stores chapter-wise information, deadlines, and read/unread status.
