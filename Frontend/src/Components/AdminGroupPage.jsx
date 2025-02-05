@@ -56,7 +56,7 @@ const AdminGroupPage = () => {
     const fetchGroups = async () => {
         try {
             const accessToken = localStorage.getItem("accessToken");
-            const response = await axios.get("http://localhost:9089/api/groups-admin/", {headers: {Authorization: `Bearer ${accessToken}`}});
+            const response = await axios.get("http://localhost:8087/api/groups-admin/", {headers: {Authorization: `Bearer ${accessToken}`}});
             setGroups(response.data);
         } catch (error) {
             console.error("Failed to fetch groups.");
@@ -67,7 +67,7 @@ const AdminGroupPage = () => {
     const fetchBooks = async () => {
         try {
             const accessToken = localStorage.getItem("accessToken");
-            const response = await axios.get("http://localhost:9089/api/books-admin/", {headers: {Authorization: `Bearer ${accessToken}`}});
+            const response = await axios.get("http://localhost:8087/api/books-admin/", {headers: {Authorization: `Bearer ${accessToken}`}});
             setBooks(response.data);
         } catch (error) {
             console.error("Failed to fetch books");
@@ -78,7 +78,7 @@ const AdminGroupPage = () => {
     const fetchMembers = async () => {
         try {
             const accessToken = localStorage.getItem("accessToken");
-            const response = await axios.get("http://localhost:9089/api/users/", {headers: {Authorization: `Bearer ${accessToken}`}});
+            const response = await axios.get("http://localhost:8087/api/users/", {headers: {Authorization: `Bearer ${accessToken}`}});
             setMembers(response.data);
         } catch (error) {
             console.error("Failed to fetch members.");
@@ -109,10 +109,10 @@ const AdminGroupPage = () => {
             const accessToken = localStorage.getItem("accessToken");
             if (isEdit) {  
                 //update existing group
-                await axios.patch(`http://localhost:9089/api/groups/${formData.id}/update/`, payload, {headers: {Authorization: `Bearer ${accessToken}`}});
+                await axios.patch(`http://localhost:8087/api/groups/${formData.id}/update/`, payload, {headers: {Authorization: `Bearer ${accessToken}`}});
             } else {
                 //create new group
-                await axios.post("http://localhost:9089/api/groups/create/", payload, {headers: {Authorization: `Bearer ${accessToken}`}});
+                await axios.post("http://localhost:8087/api/groups/create/", payload, {headers: {Authorization: `Bearer ${accessToken}`}});
             }
             //reset form and refresh group list
             setFormData({id: null, name: "", reading_goals: "", book: "", members: []});
@@ -139,7 +139,7 @@ const AdminGroupPage = () => {
     const handleDelete = async (id) => {
         try {
             const accessToken = localStorage.getItem("accessToken");
-            await axios.delete(`http://localhost:9089/api/groups/${id}/delete/`, {headers: {Authorization: `Bearer ${accessToken}`}});
+            await axios.delete(`http://localhost:8087/api/groups/${id}/delete/`, {headers: {Authorization: `Bearer ${accessToken}`}});
             fetchGroups();
         } catch (error) {
             console.error("Failed to delete group.");

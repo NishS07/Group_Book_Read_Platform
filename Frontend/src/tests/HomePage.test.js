@@ -1,4 +1,4 @@
-//this test files ensures HomePage component renders correctly, displays user-specifuc content and
+//this test files ensures HomePage component renders correctly, displays user-specific content and
 //handles logout functionality
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router";

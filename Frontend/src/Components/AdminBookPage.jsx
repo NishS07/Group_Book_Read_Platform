@@ -55,7 +55,7 @@ const AdminBookPage = () => {
         const fetchBooks = async () => {
             try {
                 const accessToken = localStorage.getItem("accessToken");
-                const response = await axios.get("http://localhost:9089/api/books-admin/", {
+                const response = await axios.get("http://localhost:8087/api/books-admin/", {
                     headers: { Authorization: `Bearer ${accessToken}` },
                 });
                 setBooks(response.data);
@@ -80,7 +80,7 @@ const AdminBookPage = () => {
             try {
                 //update existing book data
                 const response = await axios.patch(
-                    `http://localhost:9089/api/books/${editBookId}/update/`,
+                    `http://localhost:8087/api/books/${editBookId}/update/`,
                     formData,
                     { headers: { Authorization: `Bearer ${accessToken}` } }
                 );
@@ -99,7 +99,7 @@ const AdminBookPage = () => {
         } else {
             try {
                 //adding new book data
-                const response = await axios.post("http://localhost:9089/api/books/create/", formData, {
+                const response = await axios.post("http://localhost:8087/api/books/create/", formData, {
                     headers: { Authorization: `Bearer ${accessToken}` },
                 });
                 //new book entry
@@ -116,7 +116,7 @@ const AdminBookPage = () => {
     const handleDelete = async (bookId) => {
         const accessToken = localStorage.getItem("accessToken");
         try {
-            await axios.delete(`http://localhost:9089/api/books/${bookId}/delete/`, {
+            await axios.delete(`http://localhost:8087/api/books/${bookId}/delete/`, {
                 headers: { Authorization: `Bearer ${accessToken}` },
             });
             //removing from available books

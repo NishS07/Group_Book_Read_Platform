@@ -45,7 +45,7 @@ const BookSelectionPage = () => {
             try {
                 const token = localStorage.getItem("accessToken");
                 const headers = { Authorization: `Bearer ${token}` };
-                const response = await axios.get("http://localhost:9089/api/books/", { headers });
+                const response = await axios.get("http://localhost:8087/api/books/", { headers });
                 setBooks(response.data);
             } catch (error) {
                 console.error("Error fetching books: ", error);
@@ -59,7 +59,7 @@ const BookSelectionPage = () => {
         try {
             const token = localStorage.getItem("accessToken");
             const headers = { Authorization: `Bearer ${token}` };
-            const response = await axios.get(`http://localhost:9089/api/group-by-book/?book=${bookId}`, { headers });
+            const response = await axios.get(`http://localhost:8087/api/group-by-book/?book=${bookId}`, { headers });
             setGroups(response.data);
         } catch (error) {
             console.error("Error fetching groups: ", error);
@@ -73,7 +73,7 @@ const BookSelectionPage = () => {
             const headers = { Authorization: `Bearer ${token}` };
             const data = { name: groupName, reading_goals: readingGoals };
  
-            const response = await axios.post(`http://localhost:9089/api/books/${bookId}/groups/`, data, { headers });
+            const response = await axios.post(`http://localhost:8087/api/books/${bookId}/groups/`, data, { headers });
             const { created, group } = response.data;
  
             if (created) {

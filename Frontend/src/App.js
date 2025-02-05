@@ -24,8 +24,8 @@ const App = ({Router = DefaultRouter}) => {
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
           {/*Protected Routes for Member and Admin*/}
-          <Route path="/home" element={<ProtectedRoute allowedRoles={["admin", "member"]}><HomePage /></ProtectedRoute>} />
-          <Route path="/adminhomepage" element={<ProtectedRoute allowedRoles={["admin", "member"]}><AdminHomePage /></ProtectedRoute>} />
+          <Route path="/home" element={<ProtectedRoute allowedRoles={["member"]}><HomePage /></ProtectedRoute>} />
+          <Route path="/adminhomepage" element={<ProtectedRoute allowedRoles={["admin"]}><AdminHomePage /></ProtectedRoute>} />
           
           {/*Member Routes*/}
           <Route path="/book-selection" element={<BookSelectionPage />} />

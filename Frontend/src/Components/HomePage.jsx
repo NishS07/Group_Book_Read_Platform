@@ -61,15 +61,15 @@ const HomePage = () => {
                 const headers = { Authorization: `Bearer ${token}` };
                 
                 //fetch available books
-                const booksResponse = await axios.get("http://localhost:9089/api/books/", { headers });
+                const booksResponse = await axios.get("http://localhost:8087/api/books/", { headers });
                 setBooks(booksResponse.data);
  
                 //fetch available groups
-                const groupsResponse = await axios.get("http://localhost:9089/api/groups/", { headers });
+                const groupsResponse = await axios.get("http://localhost:8087/api/groups/", { headers });
                 setGroups(groupsResponse.data);
 
                 //fetch notifications
-                const notificationResponse = await axios.get("http://localhost:9089/api/chapter-deadline-notifications/", {headers});
+                const notificationResponse = await axios.get("http://localhost:8087/api/chapter-deadline-notifications/", {headers});
                 setNotifications(notificationResponse.data);
             } catch (error) {
                 console.error("Error fetching data: ", error);
@@ -200,7 +200,7 @@ const HomePage = () => {
                     </Typography>
                     <Typography variant="body1" sx={{ display: "flex", alignItems: "center", fontSize: "1rem" }}>
                         <LocalLibrary sx={{ mr: 1 }} />
-                        Set deadlines to stay on track with your reading goals.
+                        Deadlines to stay on track with your reading goals.
                     </Typography>
                     <Typography variant="body1" sx={{ display: "flex", alignItems: "center", fontSize: "1rem" }}>
                         <Groups sx={{ mr: 1 }} />

@@ -44,7 +44,7 @@ const LoginPage = () => {
         //try-catch to handle exceptions
         try{
             //axios to connect to api endpoint developed to handle token generation through django DRF
-            const response = await axios.post("http://localhost:9089/api/login/", {
+            const response = await axios.post("http://localhost:8087/api/login/", {
                 username: formData.username,
                 password: formData.password,
             });
@@ -57,7 +57,7 @@ const LoginPage = () => {
             localStorage.setItem("username", formData.username);
 
             //fetch user role using the access token
-            const roleResponse = await axios.get("http://localhost:9089/api/user-info/",{
+            const roleResponse = await axios.get("http://localhost:8087/api/user-info/",{
                 headers: {
                     Authorization: `Bearer ${access}`,
                 },

@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from .models import CustomUser, Book, Group, Chapter, Discussion
+from django.contrib.auth.password_validation import validate_password
 
 # Serializer for user registration
 class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required = True, validators = [validate_password])
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'password', 'role']
@@ -20,11 +22,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-# Serializer for basic user details
+# Serializer for basic user details based on the roles admin/member.
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username']  # Only return ID and username
+        fields = ['id', 'username','role']  # Only return ID and username
 
 
 # Serializer for books

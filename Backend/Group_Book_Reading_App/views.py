@@ -154,8 +154,8 @@ def get_member_groups(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-# Mark a chapter as read/unread for the user (only accessible to members)
-@api_view(['PUT'])
+# Mark a chapter as read/unread for the user (only accessible to members) 
+@api_view(['PATCH'])
 @permission_classes([permissions.IsAuthenticated, IsMember])
 def mark_chapter_as_read(request, group_id, chapter_id):
     try:
@@ -194,8 +194,8 @@ def mark_chapter_as_read(request, group_id, chapter_id):
 def view_progress(request):
     if request.user:
         groups = Group.objects.filter(members=request.user)  # Get groups the user is part of
-    else:
-        groups = request.user.groups.all()
+    # else:
+    #     groups = request.user.groups.all()
     if not groups.exists():
         return Response({"error": "User is not a member of any group."}, status=status.HTTP_400_BAD_REQUEST)
     progress_data = []
@@ -254,7 +254,7 @@ def group_chapters(request, group_id):
 
 # Fetch discussions by chapter for a group (only accessible to members and supports threaded discussions and polling for new posts). 
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.IsAuthenticated,IsMember])
 def fetch_discussions_by_chapter(request, group_id):
     try:
         group = Group.objects.get(id=group_id)
@@ -477,7 +477,8 @@ def create_group(request):
             user = CustomUser.objects.get(username=username)
         except CustomUser.DoesNotExist:
             # Create a new user if they don't exist
-            user = CustomUser.objects.create(username=username)
+            # user = CustomUser.objects.create(username=username)
+            return Respnse({"detail": "User with given userid does not exists."},status=status.HTTP_404_NOT_FOUND)
         members.append(user)
     # Create the new group and associate it with the book and members
     group = Group.objects.create(name=group_name, book=book, reading_goals=reading_goals)
@@ -526,7 +527,8 @@ def update_group(request, group_id):
             try:
                 user = CustomUser.objects.get(username=username)
             except CustomUser.DoesNotExist:
-                user = CustomUser.objects.create(username=username)
+                #user = CustomUser.objects.create(username=username)
+                return Respnse({"detail": "User with given userid does not exists."},status = status.HTTP_404_NOT_FOUND)
             members.append(user)
         group.members.set(members)
     # Save the updated group

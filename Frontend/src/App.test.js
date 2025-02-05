@@ -19,7 +19,7 @@ describe("App Component", () => {
     expect(screen.getByRole("heading", {name: /Login/i})).toBeInTheDocument();
   });
 
-  //verfy that the SignUpPage is rendered when the route is "/signup"
+  //verify that the SignUpPage is rendered when the route is "/signup"
   test("renders SignUpPage on the /signup path", () => {
     renderWithRouter(["/signup"]);
     expect(screen.getByText(/Sign Up/i)).toBeInTheDocument();

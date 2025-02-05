@@ -41,14 +41,14 @@ const DiscussionPage = () => {
       try {
         //fetch chapter details
         const chapterResponse = await axios.get(
-          `http://localhost:9089/api/groupchapter/${groupId}/chapter/${chapterId}/`,
+          `http://localhost:8087/api/groupchapter/${groupId}/chapter/${chapterId}/`,
           { headers: authHeaders }
         );
         setChapterDetails(chapterResponse.data);
         
         //fetch discussion threads
         const discussionResponse = await axios.get(
-          `http://localhost:9089/api/groups/${groupId}/discussions_by_chapter/?chapter_id=${chapterId}`,
+          `http://localhost:8087/api/groups/${groupId}/discussions_by_chapter/?chapter_id=${chapterId}`,
           { headers: authHeaders }
         );
         setDiscussionThreads(discussionResponse.data);
@@ -65,7 +65,7 @@ const DiscussionPage = () => {
     try {
       //adding new post
       const response = await axios.post(
-        `http://localhost:9089/api/groups/${groupId}/discussions_by_chapter/post/`,
+        `http://localhost:8087/api/groups/${groupId}/discussions_by_chapter/post/`,
         { chapter_id: chapterId, content: newPostContent },
         { headers: authHeaders }
       );
@@ -85,7 +85,7 @@ const DiscussionPage = () => {
     if (!replyContent[parentId]?.trim()) return;
     try {
       const response = await axios.post(
-        `http://localhost:9089/api/groups/${groupId}/discussions_by_chapter/post/`,
+        `http://localhost:8087/api/groups/${groupId}/discussions_by_chapter/post/`,
         {
           chapter_id: chapterId,
           parent_id: parentId,

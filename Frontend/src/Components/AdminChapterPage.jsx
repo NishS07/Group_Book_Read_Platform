@@ -60,7 +60,7 @@ const AdminChapterPage = () => {
     //fetch chapters from API
     const fetchChapters = async () => {
         try {
-            const response = await axios.get('http://localhost:9089/api/chapter/', { headers: { Authorization: `Bearer ${accessToken}` }, });
+            const response = await axios.get('http://localhost:8087/api/chapter/', { headers: { Authorization: `Bearer ${accessToken}` }, });
             setChapters(response.data);
         } catch (error) {
             console.error("Error fetching chapters: ", error);
@@ -70,7 +70,7 @@ const AdminChapterPage = () => {
     //fetch groups from API
     const fetchGroups = async () => {
         try {
-            const response = await axios.get('http://localhost:9089/api/groups-admin/', { headers: { Authorization: `Bearer ${accessToken}` }, });
+            const response = await axios.get('http://localhost:8087/api/groups-admin/', { headers: { Authorization: `Bearer ${accessToken}` }, });
             setGroups(response.data);
         } catch (error) {
             console.error("Error fetching groups: ", error);
@@ -94,10 +94,10 @@ const AdminChapterPage = () => {
         try {
             if (isEditMode) {
                 //updating existing chapter
-                await axios.patch(`http://localhost:9089/api/chapter/${currentChapterId}/update/`, { ...formData, deadline: dayjs(formData.deadline).format("YYYY-MM-DD") }, { headers: { Authorization: `Bearer ${accessToken}` }, });
+                await axios.patch(`http://localhost:8087/api/chapter/${currentChapterId}/update/`, { ...formData, deadline: dayjs(formData.deadline).format("YYYY-MM-DD") }, { headers: { Authorization: `Bearer ${accessToken}` }, });
             } else {
                 //create new chapter
-                await axios.post('http://localhost:9089/api/chapter/create/', { ...formData, deadline: dayjs(formData.deadline).format("YYYY-MM-DD") }, { headers: { Authorization: `Bearer ${accessToken}` }, });
+                await axios.post('http://localhost:8087/api/chapter/create/', { ...formData, deadline: dayjs(formData.deadline).format("YYYY-MM-DD") }, { headers: { Authorization: `Bearer ${accessToken}` }, });
             }
             fetchChapters(); //refresh chapter list
             resetForm(); //reset form fields
@@ -120,7 +120,7 @@ const AdminChapterPage = () => {
     //deletes a chapter and refreshes the list
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:9089/api/chapter/${id}/delete/`, { headers: { Authorization: `Bearer ${accessToken}` }, });
+            await axios.delete(`http://localhost:8087/api/chapter/${id}/delete/`, { headers: { Authorization: `Bearer ${accessToken}` }, });
             fetchChapters(); //refresh chapter list
         } catch (error) {
             console.error("Error deleting chapter", error);

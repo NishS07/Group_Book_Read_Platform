@@ -43,17 +43,17 @@ const GroupPage = () => {
       const headers = { Authorization: `Bearer ${token}` };
  
       // Fetch user ID
-      const userResponse = await axios.get("http://localhost:9089/api/user-id/", { headers });
+      const userResponse = await axios.get("http://localhost:8087/api/user-id/", { headers });
       setUserId(userResponse.data.userId);
  
       // Fetch group details
-      const groupResponse = await axios.get(`http://localhost:9089/api/groups/${groupId}/`, {
+      const groupResponse = await axios.get(`http://localhost:8087/api/groups/${groupId}/`, {
         headers,
       });
       setGroup(groupResponse.data);
  
       // Fetch progress details for chapters
-      const chaptersResponse = await axios.get("http://localhost:9089/api/progress/", { headers });
+      const chaptersResponse = await axios.get("http://localhost:8087/api/progress/", { headers });
       const groupProgress = chaptersResponse.data.find(
         (g) => g.group_id === parseInt(groupId, 10)
       );
@@ -84,7 +84,7 @@ const GroupPage = () => {
       const headers = { Authorization: `Bearer ${token}` };
  
       // send request to toggle chapter status
-      await axios.put(`http://localhost:9089/api/groups/${groupId}/chapter/${chapterId}/`, {}, { headers });
+      await axios.patch(`http://localhost:8087/api/groups/${groupId}/chapter/${chapterId}/`, {}, { headers });
  
       // Refetch the progress data to ensure consistency
       await fetchProgressData();

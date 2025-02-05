@@ -36,7 +36,7 @@ const YourGroupsPage = () => {
       try {
         const token = localStorage.getItem("accessToken");
         const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.get("http://localhost:9089/api/member/groups/", { headers });
+        const response = await axios.get("http://localhost:8087/api/member/groups/", { headers });
         setGroups(response.data);
         setLoading(false);
       } catch (error) {

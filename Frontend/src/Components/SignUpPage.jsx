@@ -50,7 +50,7 @@ const SignUpPage = () => {
         //try-catch to handle exceptions
         try{
             //send user registration data to backend API
-            const response = await axios.post('http://localhost:9089/api/register/',{
+            const response = await axios.post('http://localhost:8087/api/register/',{
                 username,
                 email,
                 password,
@@ -64,7 +64,24 @@ const SignUpPage = () => {
             }
         }
         catch (err){
-            setError('Signup failed. Please try again');
+            if(err.response && err.response.data){
+                const errorData = err.response.data;
+                if(errorData.username){
+                    setError(errorData.username[0]);
+                }
+                else if(errorData.email){
+                    setError(errorData.email[0]);
+                }
+                else if(errorData.password){
+                    setError(errorData.password[0]);
+                }
+                else{
+                    setError('Signup failed. Please check your details and try again.');
+                }
+            }
+            else{
+                setError('Signup failed. Please try again');
+            }
         }
     };
 
